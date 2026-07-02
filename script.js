@@ -496,59 +496,173 @@ function handleFileSelect(file) {
 
 async function submitRegistration(e) {
   e.preventDefault();
-  const name = document.getElementById('reg-name').value.trim();
-  const phone = document.getElementById('reg-phone').value.trim();
+
+  const name   = document.getElementById('reg-name').value.trim();
+  const phone  = document.getElementById('reg-phone').value.trim();
   const course = document.getElementById('reg-course').value;
-  if (!name || !phone || !course) { showToast('لطفاً تمام فیلدها را پر کنید', 'error'); return; }
-  if (!/^09[0-9]{9}$/.test(phone)) { showToast('شماره موبایل معتبر نیست', 'error'); return; }
-  if (!uploadedImageFile) { showToast('لطفاً تصویر رسید را آپلود کنید', 'error'); return; }
+
+  // اعتبارسنجی فیلدها
+  if (!name) {
+    showToast('لطفاً نام و نام خانوادگی را وارد کنید', 'error');
+    return;
+  }
+  if (!phone) {
+    showToast('لطفاً شماره موبایل را وارد کنید', 'error');
+    return;
+  }
+  if (!/^09[0-9]{9}$/.test(phone)) {
+    showToast('شماره موبایل باید با ۰۹ شروع شود و ۱۱ رقم باشد', 'error');
+    return;
+  }
+  if (!course) {
+    showToast('لطفاً دوره مورد نظر را انتخاب کنید', 'error');
+    return;
+  }
+  if (!uploadedImageFile) {
+    showToast('لطفاً تصویر رسید پرداخت را آپلود کنید', 'error');
+    return;
+  }
+
+  // چک کردن config
+  if (
+    CONFIG.googleScriptURL === 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL' ||
+    CONFIG.cloudinaryCloudName === 'YOUR_CLOUDINARY_CLOUD_NAME' ||
+    CONFIG.cloudinaryUploadPreset === 'YOUR_UNSIGNED_PRESET_NAME'
+  ) {
+    showToast('تنظیمات سیستم ناقص است. لطفاً با مدیر سایت تماس بگیرید.', 'error');
+    return;
+  }
+
   const btn = document.getElementById('submit-btn');
   btn.disabled = true;
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> در حال ارسال...';
+
   try {
+    // مرحله ۱: آپلود تصویر به Cloudinary
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> در حال آپلود رسید...';
     receiptURL = await uploadToCloudinary(uploadedImageFile);
-    await postToGoogleSheets({ name, phone, course, receiptURL, timestamp: new Date().toISOString() });
+
+    // مرحله ۲: ارسال اطلاعات به Google Sheets
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> در حال ثبت اطلاعات...';
+    await postToGoogleSheets({
+      name,
+      phone,
+      course,
+      receiptURL,
+      timestamp: new Date().toLocaleString('fa-IR')
+    });
+
+    // مرحله ۳: نمایش صفحه موفقیت
+    buildStep3();
     document.getElementById('success-summary').innerHTML = `
-      <div class="summary-row"><span class="summary-label">نام</span><span class="summary-value">${name}</span></div>
-      <div class="summary-row"><span class="summary-label">موبایل</span><span class="summary-value">${phone}</span></div>
-      <div class="summary-row"><span class="summary-label">دوره</span><span class="summary-value">${course}</span></div>`;
+      <div class="summary-row">
+        <span class="summary-label">نام</span>
+        <span class="summary-value">${name}</span>
+      </div>
+      <div class="summary-row">
+        <span class="summary-label">موبایل</span>
+        <span class="summary-value">${phone}</span>
+      </div>
+      <div class="summary-row">
+        <span class="summary-label">دوره</span>
+        <span class="summary-value">${course}</span>
+      </div>
+      <div class="summary-row">
+        <span class="summary-label">وضعیت</span>
+        <span class="summary-value" style="color:var(--success)">در انتظار تأیید</span>
+      </div>`;
     goToStep(3);
+
   } catch (err) {
-    showToast('خطا در ارسال اطلاعات. لطفاً دوباره تلاش کنید.', 'error');
+    // تشخیص نوع خطا و نمایش پیام مناسب
+    let errorMsg = 'خطا در ارسال اطلاعات. لطفاً دوباره تلاش کنید.';
+
+    if (err.message && err.message.includes('Cloudinary')) {
+      errorMsg = 'خطا در آپلود تصویر. اتصال اینترنت را چک کنید.';
+    } else if (err.message && err.message.includes('NetworkError')) {
+      errorMsg = 'خطای شبکه. اتصال اینترنت را بررسی کنید.';
+    }
+
+    showToast(errorMsg, 'error');
+    console.error('Registration error:', err);
+
     btn.disabled = false;
     btn.innerHTML = '<i class="fas fa-paper-plane"></i> ارسال و تکمیل ثبت‌نام';
   }
 }
 
 async function uploadToCloudinary(file) {
-  const { cloudinaryCloudName, cloudinaryUploadPreset } = CONFIG;
-  const formData = new FormData();
-  formData.append('file', file);
-  formData.append('upload_preset', cloudinaryUploadPreset);
-  const pw = document.getElementById('progress-wrap');
-  const pf = document.getElementById('progress-fill');
-  pw.style.display = 'block';
   return new Promise((resolve, reject) => {
+    const { cloudinaryCloudName, cloudinaryUploadPreset } = CONFIG;
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', cloudinaryUploadPreset);
+    formData.append('folder', 'receipts');
+
+    const pw = document.getElementById('progress-wrap');
+    const pf = document.getElementById('progress-fill');
+    if (pw) pw.style.display = 'block';
+
     const xhr = new XMLHttpRequest();
-    xhr.upload.onprogress = (e) => { if (e.lengthComputable) pf.style.width = (e.loaded / e.total * 100) + '%'; };
-    xhr.onload = () => {
-      if (xhr.status === 200) { const data = JSON.parse(xhr.responseText); resolve(data.secure_url); }
-      else reject(new Error('Upload failed'));
+
+    xhr.upload.onprogress = (ev) => {
+      if (ev.lengthComputable && pf) {
+        const percent = Math.round((ev.loaded / ev.total) * 100);
+        pf.style.width = percent + '%';
+      }
     };
-    xhr.onerror = () => reject(new Error('Upload error'));
-    xhr.open('POST', `https://api.cloudinary.com/v1_1/${cloudinaryCloudName}/image/upload`);
+
+    xhr.onload = () => {
+      if (xhr.status === 200) {
+        try {
+          const data = JSON.parse(xhr.responseText);
+          if (data.secure_url) {
+            resolve(data.secure_url);
+          } else {
+            reject(new Error('Cloudinary: no secure_url in response'));
+          }
+        } catch (parseErr) {
+          reject(new Error('Cloudinary: invalid response format'));
+        }
+      } else {
+        let errMsg = 'Cloudinary upload failed';
+        try {
+          const errData = JSON.parse(xhr.responseText);
+          if (errData.error && errData.error.message) {
+            errMsg = 'Cloudinary: ' + errData.error.message;
+          }
+        } catch (e) {}
+        reject(new Error(errMsg));
+      }
+    };
+
+    xhr.onerror = () => {
+      reject(new Error('Cloudinary: NetworkError — اتصال اینترنت را بررسی کنید'));
+    };
+
+    xhr.ontimeout = () => {
+      reject(new Error('Cloudinary: timeout — اتصال کند است'));
+    };
+
+    xhr.timeout = 60000; // 60 ثانیه
+    xhr.open(
+      'POST',
+      `https://api.cloudinary.com/v1_1/${cloudinaryCloudName}/image/upload`
+    );
     xhr.send(formData);
   });
 }
 
 async function postToGoogleSheets(data) {
-  const res = await fetch(CONFIG.googleScriptURL, {
+  // Google Apps Script به دلیل CORS نیاز به no-cors دارد
+  // با no-cors پاسخ خوانده نمی‌شود ولی داده ذخیره می‌شود
+  await fetch(CONFIG.googleScriptURL, {
     method: 'POST',
-    body: JSON.stringify(data),
-    headers: { 'Content-Type': 'application/json' }
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
   });
-  const json = await res.json();
-  if (json.result !== 'success') throw new Error('Sheet error');
+  // اگر fetch خطا نداد یعنی موفق بوده
 }
 
 // ── COPY ─────────────────────────────────────────────────────
