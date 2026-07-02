@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>مهران فقیه | دوره‌های هوش مصنوعی</title>
+  <meta name="description" content="دوره‌های تخصصی هوش مصنوعی با مهران فقیه. از مقدماتی تا پیشرفته."/>
+  <meta property="og:title" content="مهران فقیه | دوره‌های هوش مصنوعی"/>
+  <meta property="og:description" content="یادگیری حرفه‌ای هوش مصنوعی با بهترین مدرس"/>
+  <meta property="og:image" content="images/og-image.jpg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="#home" class="logo" aria-label="صفحه اصلی">
+      <span class="logo-name">مهران فقیه</span>
+      <span class="logo-sub">متخصص هوش مصنوعی</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="منوی اصلی">
+      <a href="#home" class="nav-link">خانه</a>
+      <a href="#courses" class="nav-link">دوره‌ها</a>
+      <a href="#instructor" class="nav-link">مدرس</a>
+      <a href="#testimonials" class="nav-link">نظرات</a>
+      <a href="#contact" class="nav-link">تماس</a>
+    </nav>
+    <button class="btn-primary btn-register-nav" onclick="openModal(null)" aria-label="ثبت‌نام در دوره">ثبت‌نام کن</button>
+    <button class="hamburger" id="hamburger" aria-label="باز کردن منو" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <canvas id="particles"></canvas>
+  <div class="hero-content container">
+    <p class="hero-tag"><i class="fas fa-robot"></i> دوره‌های هوش مصنوعی</p>
+    <h1 class="hero-title" id="typed-title"></h1>
+    <p class="hero-sub">از صفر تا استخدام با آموزش عملی و پروژه‌محور</p>
+    <div class="hero-btns">
+      <a href="#courses" class="btn-primary btn-lg" aria-label="مشاهده دوره‌ها"><i class="fas fa-graduation-cap"></i> مشاهده دوره‌ها</a>
+      <a href="#instructor" class="btn-outline btn-lg" aria-label="درباره مدرس"><i class="fas fa-user"></i> درباره مدرس</a>
+    </div>
+    <div class="hero-stats" id="hero-stats"></div>
+  </div>
+  <div class="scroll-down" aria-label="اسکرول به پایین"><i class="fas fa-chevron-down"></i></div>
+</section>
+
+<!-- INSTRUCTOR -->
+<section class="section" id="instructor">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <h2 class="section-title">درباره <span class="gold">مدرس</span></h2>
+      <p class="section-sub">با تجربه‌ای که نتیجه می‌دهد</p>
+    </div>
+    <div class="instructor-grid" id="instructor-content"></div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section class="section section-dark" id="courses">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <h2 class="section-title">دوره‌های <span class="gold">تخصصی</span></h2>
+      <p class="section-sub">مسیر یادگیری خود را انتخاب کنید</p>
+    </div>
+    <div class="courses-grid" id="courses-grid"></div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section" id="why">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <h2 class="section-title">چرا <span class="gold">ما؟</span></h2>
+    </div>
+    <div class="why-grid" id="why-grid"></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section section-dark" id="testimonials">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <h2 class="section-title">نظرات <span class="gold">دانشجویان</span></h2>
+    </div>
+    <div class="testimonial-wrapper">
+      <div class="testimonial-track" id="testimonial-track"></div>
+      <div class="testimonial-dots" id="testimonial-dots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <h2 class="section-title">سؤالات <span class="gold">متداول</span></h2>
+    </div>
+    <div class="faq-list" id="faq-list"></div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer" id="contact">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <div class="logo footer-logo">
+        <span class="logo-name">مهران فقیه</span>
+        <span class="logo-sub">متخصص هوش مصنوعی</span>
+      </div>
+      <p class="footer-bio" id="footer-bio"></p>
+      <div class="social-links" id="footer-social"></div>
+    </div>
+    <div class="footer-col">
+      <h4 class="footer-heading">لینک‌های سریع</h4>
+      <ul class="footer-links">
+        <li><a href="#home">خانه</a></li>
+        <li><a href="#courses">دوره‌ها</a></li>
+        <li><a href="#instructor">مدرس</a></li>
+        <li><a href="#testimonials">نظرات</a></li>
+        <li><a href="#faq">سؤالات متداول</a></li>
+      </ul>
+    </div>
+    <div class="footer-col" id="footer-contact"></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© ۱۴۰۴ تمام حقوق محفوظ است — <span class="gold">مهران فقیه</span></p>
+  </div>
+</footer>
+
+<!-- COURSE DETAIL PANEL -->
+<div class="panel-overlay" id="panel-overlay" role="dialog" aria-modal="true" aria-label="جزئیات دوره"></div>
+<aside class="course-panel" id="course-panel">
+  <button class="panel-close" id="panel-close" aria-label="بستن"><i class="fas fa-times"></i></button>
+  <div class="panel-content" id="panel-content"></div>
+  <div class="panel-footer">
+    <button class="btn-primary btn-full" id="panel-register-btn" aria-label="ثبت‌نام در دوره">
+      <i class="fas fa-user-plus"></i> ثبت‌نام در این دوره
+    </button>
+  </div>
+</aside>
+
+<!-- REGISTRATION MODAL -->
+<div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-label="ثبت‌نام">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modal-close" aria-label="بستن"><i class="fas fa-times"></i></button>
+    <div class="modal-steps">
+      <div class="step active" data-step="1"><span>۱</span> پرداخت</div>
+      <div class="step" data-step="2"><span>۲</span> اطلاعات</div>
+      <div class="step" data-step="3"><span>۳</span> تأیید</div>
+    </div>
+    <div id="modal-step-1" class="modal-body active"></div>
+    <div id="modal-step-2" class="modal-body"></div>
+    <div id="modal-step-3" class="modal-body"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.umd.js"></script>
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
