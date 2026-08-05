@@ -3,227 +3,228 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>اینتلی‌نیوز | ایجنت هوشمند اخبار</title>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<title>اینتلی‌نیوز | ایجنت هوشمند اخبار با AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 <style>
 :root{
-  --bg:#0a0a0f;
-  --bg-card:#15151f;
-  --bg-card-hover:#1e1e2e;
-  --border:#2a2a3e;
-  --gold:#f5c518;
-  --gold-dark:#d4a700;
-  --text:#f0f0f5;
-  --text-muted:#9a9ab0;
-  --success:#10b981;
-  --danger:#ef4444;
-  --domestic:#38bdf8;
-  --international:#a78bfa;
+  --bg:#08080c;
+  --bg2:#12121a;
+  --card:#171722;
+  --card2:#1e1e2f;
+  --border:#262637;
+  --border2:#32324a;
+  --gold:#FFD60A;
+  --gold2:#FFC300;
+  --text:#f5f5fa;
+  --muted:#8b8ba7;
+  --muted2:#5a5a78;
+  --success:#00D492;
+  --danger:#FF4D5A;
+  --blue:#4F9CF9;
+  --purple:#A78BFA;
+  --cyan:#22D3EE;
 }
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Vazirmatn',sans-serif}
-body{background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);line-height:1.7;min-height:100vh}
 a{color:inherit;text-decoration:none}
 button{cursor:pointer;border:none;background:none;font-family:inherit}
-.container{max-width:1400px;margin:0 auto;padding:0 20px}
+.container{max-width:1450px;margin:0 auto;padding:0 22px}
 
-/* HEADER */
+/* Header */
 .header{
   position:sticky;top:0;z-index:100;
-  backdrop-filter:blur(12px);
-  background:rgba(10,10,15,0.8);
+  backdrop-filter:blur(20px) saturate(1.5);
+  background:linear-gradient(180deg,rgba(12,12,18,0.9),rgba(8,8,12,0.7));
   border-bottom:1px solid var(--border);
-  padding:14px 0;
 }
-.header-inner{display:flex;justify-content:space-between;align-items:center}
-.logo{display:flex;align-items:center;gap:12px}
+.header-inner{height:64px;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:14px}
 .logo-icon{
-  width:42px;height:42px;border-radius:12px;
-  background:linear-gradient(135deg,var(--gold),#ff8a00);
-  display:grid;place-items:center;color:#000;font-weight:900;font-size:20px;
+  width:44px;height:44px;border-radius:12px;
+  background:conic-gradient(from 0deg,var(--gold),#FF8A00,var(--gold));
+  display:grid;place-items:center;color:#000;font-weight:900;font-size:22px;
+  box-shadow:0 4px 20px rgba(255,214,10,0.3);
+  position:relative;
 }
-.logo-text h1{font-size:18px;font-weight:800;letter-spacing:-0.3px}
-.logo-text p{font-size:11px;color:var(--text-muted);margin-top:-2px}
+.logo-icon::after{
+  content:'';position:absolute;inset:2px;background:linear-gradient(135deg,var(--gold),#FF8A00);border-radius:10px;z-index:-1;
+}
+.logo-text h1{font-size:19px;font-weight:900;letter-spacing:-0.5px;line-height:1.1}
+.logo-text span{font-size:11px;color:var(--muted);font-weight:500;display:flex;align-items:center;gap:5px}
+.logo-text span i{color:var(--success)}
 .header-actions{display:flex;gap:10px;align-items:center}
 .badge-live{
-  display:flex;align-items:center;gap:6px;
-  background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.3);
-  color:var(--success);padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600;
+  display:flex;align-items:center;gap:7px;
+  background:rgba(0,212,146,0.1);border:1px solid rgba(0,212,146,0.25);
+  color:var(--success);padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;
 }
-.badge-live .dot{width:8px;height:8px;background:var(--success);border-radius:50%;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(0.9)}}
+.dot{width:8px;height:8px;background:var(--success);border-radius:50%;box-shadow:0 0 10px var(--success);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(0.9)}}
 
 /* Buttons */
 .btn{
-  padding:10px 18px;border-radius:10px;font-weight:600;font-size:13px;
-  display:inline-flex;align-items:center;gap:8px;transition:.2s;
+  padding:10px 18px;border-radius:11px;font-weight:700;font-size:13px;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.22s;white-space:nowrap;
 }
-.btn-primary{background:var(--gold);color:#000}
-.btn-primary:hover{background:var(--gold-dark);transform:translateY(-1px)}
-.btn-outline{border:1px solid var(--border);color:var(--text);background:var(--bg-card)}
-.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
-.btn-ghost{color:var(--text-muted)}
+.btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;box-shadow:0 4px 15px rgba(255,214,10,0.25)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(255,214,10,0.35);filter:brightness(1.05)}
+.btn-outline{background:var(--card);border:1px solid var(--border);color:var(--text)}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);background:rgba(255,214,10,0.07)}
+.btn-ghost{color:var(--muted);padding:8px 12px}
 .btn-ghost:hover{color:var(--text)}
-.btn-sm{padding:6px 12px;font-size:12px}
-.btn-icon{width:36px;height:36px;display:grid;place-items:center;border-radius:8px;border:1px solid var(--border);color:var(--text-muted)}
-.btn-icon:hover{border-color:var(--gold);color:var(--gold)}
+.btn-sm{padding:7px 13px;font-size:12px;border-radius:9px}
+.btn-icon{width:38px;height:38px;display:grid;place-items:center;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--muted);transition:.2s}
+.btn-icon:hover{border-color:var(--border2);color:var(--text);background:var(--card2)}
 
-/* LAYOUT */
-.main{padding:28px 0 60px}
-.grid{display:grid;grid-template-columns:320px 1fr;gap:24px}
-@media(max-width:1100px){.grid{grid-template-columns:1fr}}
+/* Layout */
+.main{padding:26px 0 70px}
+.grid{display:grid;grid-template-columns:360px 1fr;gap:22px}
+@media(max-width:1150px){.grid{grid-template-columns:1fr}}
+.sidebar{display:flex;flex-direction:column;gap:18px}
 
+/* Cards */
 .card{
-  background:var(--bg-card);border:1px solid var(--border);border-radius:16px;
-  overflow:hidden;
+  background:linear-gradient(180deg,var(--card),var(--bg2));
+  border:1px solid var(--border);border-radius:18px;
+  overflow:hidden;position:relative;
+}
+.card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);
 }
 .card-header{
   padding:18px 20px;border-bottom:1px solid var(--border);
-  display:flex;justify-content:space-between;align-items:center;
+  display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.01);
 }
-.card-header h3{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
-.card-header h3 i{color:var(--gold)}
+.card-header h3{font-size:14px;font-weight:800;display:flex;align-items:center;gap:9px;letter-spacing:-0.3px}
+.card-header h3 i{width:28px;height:28px;display:grid;place-items:center;border-radius:8px;background:rgba(255,214,10,0.12);color:var(--gold);font-size:13px}
 .card-body{padding:20px}
 
 /* Inputs */
-.input-group{margin-bottom:16px}
-.input-group label{display:block;font-size:12px;font-weight:600;color:var(--text-muted);margin-bottom:6px}
+.input-group{margin-bottom:15px}
+.input-group label{display:block;font-size:11px;font-weight:700;color:var(--muted);margin-bottom:7px;letter-spacing:0.2px}
 .input{
-  width:100%;background:#0f0f17;border:1px solid var(--border);border-radius:10px;
-  padding:11px 14px;color:var(--text);font-size:13px;transition:.2s;outline:none;
+  width:100%;background:#0e0e16;border:1.5px solid var(--border);border-radius:11px;
+  padding:11px 14px;color:var(--text);font-size:13px;transition:.22s;outline:none;
 }
-.input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(245,197,24,0.12)}
-.input::placeholder{color:#5a5a72}
-.switch{
-  width:42px;height:24px;background:#2a2a3e;border-radius:999px;position:relative;cursor:pointer;transition:.2s;
-}
-.switch.active{background:var(--gold)}
-.switch::after{
-  content:'';position:absolute;top:3px;right:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:.2s;
-}
+.input:focus{border-color:rgba(255,214,10,0.5);background:#11111b;box-shadow:0 0 0 4px rgba(255,214,10,0.1)}
+.input::placeholder{color:var(--muted2)}
+.switch{width:44px;height:26px;background:#252538;border-radius:999px;position:relative;cursor:pointer;transition:.25s;border:1px solid var(--border)}
+.switch.active{background:var(--gold);border-color:var(--gold);box-shadow:0 0 12px rgba(255,214,10,0.3)}
+.switch::after{content:'';position:absolute;top:2px;right:2px;width:20px;height:20px;background:#fff;border-radius:50%;transition:.25s cubic-bezier(.68,-.55,.27,1.55);box-shadow:0 2px 6px rgba(0,0,0,0.2)}
 .switch.active::after{transform:translateX(-18px)}
 .row{display:flex;gap:10px}
 .row .input-group{flex:1}
 
 /* Keywords */
-.keyword-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.kw-form{display:flex;gap:8px}
+.kw-form .input{flex:1}
+.keyword-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;min-height:20px}
 .keyword-chip{
   display:inline-flex;align-items:center;gap:8px;
-  background:linear-gradient(135deg,#1e1e2e,#252538);
-  border:1px solid var(--border);padding:6px 12px;border-radius:999px;
-  font-size:12px;font-weight:500;
+  background:linear-gradient(135deg,var(--card2),#24243a);
+  border:1px solid var(--border);padding:7px 13px;border-radius:999px;
+  font-size:12px;font-weight:600;transition:.2s;cursor:pointer;
 }
-.keyword-chip.active{border-color:var(--gold);background:rgba(245,197,24,0.1)}
-.keyword-chip .remove{
-  width:18px;height:18px;border-radius:50%;background:#2a2a3e;
-  display:grid;place-items:center;font-size:10px;transition:.2s;
-}
-.keyword-chip .remove:hover{background:var(--danger);color:#fff}
-.keyword-meta{font-size:10px;color:var(--text-muted);display:flex;gap:6px;margin-top:4px}
+.keyword-chip:hover{border-color:var(--border2);transform:translateY(-1px)}
+.keyword-chip.active{border-color:rgba(255,214,10,0.5);background:linear-gradient(135deg,rgba(255,214,10,0.15),rgba(255,195,0,0.1));color:var(--gold);box-shadow:0 2px 10px rgba(255,214,10,0.15)}
+.keyword-chip .type{font-size:9px;padding:2px 6px;border-radius:999px;background:#0e0e16;border:1px solid var(--border);color:var(--muted)}
+.keyword-chip .remove{width:18px;height:18px;border-radius:50%;background:#1e1e2e;display:grid;place-items:center;font-size:10px;transition:.2s;border:1px solid var(--border)}
+.keyword-chip .remove:hover{background:var(--danger);color:#fff;border-color:var(--danger)}
 
 /* Stats */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
+@media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
 .stat{
-  background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center;
+  background:linear-gradient(135deg,var(--card),var(--bg2));border:1px solid var(--border);border-radius:14px;padding:16px 18px;
+  display:flex;justify-content:space-between;align-items:center;position:relative;overflow:hidden;
 }
-.stat b{font-size:20px;display:block}
-.stat span{font-size:11px;color:var(--text-muted)}
+.stat::after{content:'';position:absolute;top:0;right:0;width:50%;height:100%;background:radial-gradient(ellipse at top right,rgba(255,214,10,0.06),transparent 60%);pointer-events:none}
+.stat-main b{font-size:22px;font-weight:900;display:block;line-height:1}
+.stat-main span{font-size:11px;color:var(--muted);font-weight:600}
+.stat-icon{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-size:16px}
+.stat-icon.gold{background:rgba(255,214,10,0.12);color:var(--gold)}
+.stat-icon.blue{background:rgba(79,156,249,0.12);color:var(--blue)}
+.stat-icon.purple{background:rgba(167,139,250,0.12);color:var(--purple)}
+.stat-icon.green{background:rgba(0,212,146,0.12);color:var(--success)}
 
-/* News */
-.news-toolbar{
-  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
-  margin-bottom:16px;
-}
-.news-toolbar .filters{display:flex;gap:8px;flex-wrap:wrap}
-.filter-btn{
-  padding:7px 14px;border-radius:999px;border:1px solid var(--border);
-  font-size:12px;background:var(--bg-card);color:var(--text-muted);transition:.2s;
-}
-.filter-btn.active{background:var(--gold);color:#000;border-color:var(--gold);font-weight:700}
-.news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:14px}
+/* News toolbar */
+.news-toolbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:18px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;background:var(--bg2);padding:4px;border-radius:999px;border:1px solid var(--border)}
+.filter-btn{padding:7px 16px;border-radius:999px;font-size:12px;font-weight:700;color:var(--muted);transition:.22s;background:transparent;border:1px solid transparent}
+.filter-btn.active{background:var(--text);color:#000;box-shadow:0 2px 10px rgba(255,255,255,0.15)}
+.filter-btn:not(.active):hover{color:var(--text);background:rgba(255,255,255,0.06)}
+
+/* News grid */
+.news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:14px}
 @media(max-width:600px){.news-grid{grid-template-columns:1fr}}
-
 .news-card{
-  background:var(--bg-card);border:1px solid var(--border);border-radius:14px;
-  padding:18px;transition:.25s;position:relative;overflow:hidden;
+  background:linear-gradient(180deg,var(--card),var(--card2));
+  border:1px solid var(--border);border-radius:16px;padding:18px;
+  transition:.28s;position:relative;overflow:hidden;group:card;
 }
-.news-card:hover{border-color:rgba(245,197,24,0.4);transform:translateY(-2px);background:var(--bg-card-hover)}
-.news-card::before{
-  content:'';position:absolute;top:0;right:0;width:3px;height:100%;
-  background:var(--domestic);opacity:0.8;
-}
-.news-card.international::before{background:var(--international)}
-.news-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px}
+.news-card:hover{border-color:rgba(255,214,10,0.25);transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,0.3),0 0 0 1px rgba(255,214,10,0.1);background:linear-gradient(180deg,#1b1b2a,#1e1e30)}
+.news-card::before{content:'';position:absolute;top:0;right:0;width:3px;height:100%;background:var(--blue);opacity:0.9}
+.news-card.domestic::before{background:var(--cyan)}
+.news-card.international::before{background:var(--purple)}
+.news-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
 .publisher-badge{
-  font-size:10px;font-weight:700;padding:4px 8px;border-radius:6px;
-  background:rgba(56,189,248,0.12);color:var(--domestic);border:1px solid rgba(56,189,248,0.2);
-  display:inline-flex;align-items:center;gap:4px;
+  font-size:10.5px;font-weight:800;padding:5px 10px;border-radius:8px;
+  display:inline-flex;align-items:center;gap:5px;letter-spacing:0.2px;
+  border:1px solid;
 }
-.publisher-badge.international{background:rgba(167,139,250,0.12);color:var(--international);border-color:rgba(167,139,250,0.2)}
-.time-badge{font-size:11px;color:var(--text-muted);display:flex;align-items:center;gap:4px}
-.news-title{font-size:14px;font-weight:700;line-height:1.5;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.news-summary{font-size:12.5px;color:var(--text-muted);line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:12px}
+.publisher-badge.domestic{background:rgba(34,211,238,0.1);color:var(--cyan);border-color:rgba(34,211,238,0.2)}
+.publisher-badge.international{background:rgba(167,139,250,0.1);color:var(--purple);border-color:rgba(167,139,250,0.2)}
+.publisher-badge.google{background:rgba(255,214,10,0.1);color:var(--gold);border-color:rgba(255,214,10,0.2)}
+.time-badge{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px;background:var(--bg2);padding:4px 9px;border-radius:999px;border:1px solid var(--border)}
+.news-title{font-size:14.5px;font-weight:800;line-height:1.5;margin-bottom:9px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:.2s}
+.news-card:hover .news-title{color:var(--gold)}
+.news-summary{font-size:12.5px;color:var(--muted);line-height:1.7;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:14px;min-height:60px}
 .news-footer{display:flex;justify-content:space-between;align-items:center}
-.keyword-tag{
-  font-size:10px;background:rgba(245,197,24,0.12);color:var(--gold);border:1px solid rgba(245,197,24,0.2);
-  padding:3px 8px;border-radius:999px;font-weight:600;
-}
+.keyword-tag{font-size:10px;background:rgba(255,214,10,0.08);color:var(--gold);border:1px solid rgba(255,214,10,0.18);padding:4px 10px;border-radius:999px;font-weight:700;display:inline-flex;align-items:center;gap:4px}
 .news-actions{display:flex;gap:6px}
-.news-actions a,.news-actions button{
-  width:30px;height:30px;border-radius:8px;display:grid;place-items:center;
-  background:#1a1a27;border:1px solid var(--border);font-size:12px;color:var(--text-muted);transition:.2s;
-}
-.news-actions a:hover,.news-actions button:hover{border-color:var(--gold);color:var(--gold)}
-
-/* Logs */
-.log-list{max-height:260px;overflow-y:auto;display:flex;flex-direction:column;gap:6px}
-.log-item{
-  font-size:11px;padding:8px 10px;border-radius:8px;background:#0f0f17;border:1px solid #1e1e2e;
-  display:flex;gap:8px;align-items:flex-start;
-}
-.log-item.success{border-right:3px solid var(--success)}
-.log-item.error{border-right:3px solid var(--danger)}
-.log-item.info{border-right:3px solid #3b82f6}
+.news-actions a,.news-actions button{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;background:#12121c;border:1px solid var(--border);font-size:12px;color:var(--muted);transition:.22s}
+.news-actions a:hover,.news-actions button:hover{border-color:var(--gold);color:var(--gold);background:rgba(255,214,10,0.08);transform:translateY(-1px)}
 
 /* Telegram */
 .tg-status{
-  padding:12px;border-radius:10px;background:#0f0f17;border:1px dashed var(--border);
-  font-size:12px;color:var(--text-muted);margin-bottom:14px;
-  display:flex;align-items:center;gap:8px;
+  padding:13px 14px;border-radius:12px;font-size:12px;font-weight:600;margin-bottom:16px;
+  display:flex;align-items:center;gap:10px;border:1.5px dashed var(--border);color:var(--muted);background:rgba(255,255,255,0.01);
 }
-.tg-status.ok{border-style:solid;border-color:rgba(16,185,129,0.3);background:rgba(16,185,129,0.07);color:var(--success)}
+.tg-status.ok{border-style:solid;border-color:rgba(0,212,146,0.3);background:rgba(0,212,146,0.08);color:var(--success)}
+.tg-status.err{border-color:rgba(255,77,90,0.3);background:rgba(255,77,90,0.08);color:var(--danger)}
+
+/* Logs */
+.log-list{max-height:280px;overflow-y:auto;display:flex;flex-direction:column;gap:7px;scrollbar-width:thin}
+.log-item{font-size:11.5px;padding:10px 12px;border-radius:10px;background:#0e0e16;border:1px solid #1c1c2a;display:flex;gap:9px;line-height:1.5}
+.log-item.success{border-right:3px solid var(--success)}
+.log-item.error{border-right:3px solid var(--danger)}
+.log-item.warning{border-right:3px solid var(--gold)}
+.log-item.info{border-right:3px solid var(--blue)}
 
 /* Empty */
-.empty{
-  padding:50px 20px;text-align:center;color:var(--text-muted);
-}
-.empty i{font-size:36px;margin-bottom:12px;display:block;opacity:0.5}
-.empty h4{font-size:14px;color:var(--text);margin-bottom:6px}
+.empty{padding:50px 24px;text-align:center;color:var(--muted)}
+.empty i{font-size:42px;margin-bottom:14px;display:block;opacity:0.4}
+.empty h4{font-size:15px;color:var(--text);margin-bottom:8px;font-weight:800}
 
 /* Loader */
-.loader{display:flex;justify-content:center;padding:30px}
-.spinner{
-  width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--gold);
-  border-radius:50%;animation:spin 0.8s linear infinite;
-}
+.loader{display:flex;flex-direction:column;align-items:center;gap:12px;justify-content:center;padding:40px}
+.spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* Toast */
 .toast{
-  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
-  background:#1e1e2e;border:1px solid var(--border);color:var(--text);
-  padding:12px 18px;border-radius:12px;font-size:13px;font-weight:500;
-  box-shadow:0 10px 30px rgba(0,0,0,0.5);z-index:9999;
-  display:none;align-items:center;gap:10px;min-width:300px;max-width:90vw;
+  position:fixed;bottom:22px;left:50%;transform:translateX(-50%);
+  background:linear-gradient(135deg,#1e1e2f,#171722);border:1px solid var(--border2);color:var(--text);
+  padding:13px 20px;border-radius:14px;font-size:13px;font-weight:600;
+  box-shadow:0 12px 40px rgba(0,0,0,0.5),0 0 0 1px rgba(255,255,255,0.05);z-index:9999;
+  display:none;align-items:center;gap:12px;min-width:340px;max-width:92vw;backdrop-filter:blur(20px);
 }
-.toast.show{display:flex;animation:slideUp .3s ease}
-@keyframes slideUp{from{transform:translate(-50%,20px);opacity:0}to{transform:translate(-50%,0);opacity:1}}
-.toast i.success{color:var(--success)}
-.toast i.error{color:var(--danger)}
-
-/* Modal subtle scroll */
+.toast.show{display:flex;animation:toastIn .35s cubic-bezier(.68,-.55,.27,1.55)}
+@keyframes toastIn{from{transform:translate(-50%,16px) scale(.96);opacity:0}to{transform:translate(-50%,0) scale(1);opacity:1}}
+.toast i.success{color:var(--success)} .toast i.error{color:var(--danger)}
 ::-webkit-scrollbar{width:6px;height:6px}
-::-webkit-scrollbar-thumb{background:#2a2a3e;border-radius:999px}
+::-webkit-scrollbar-thumb{background:#2a2a40;border-radius:999px}
 ::-webkit-scrollbar-track{background:transparent}
 </style>
 </head>
@@ -232,16 +233,16 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 <header class="header">
   <div class="container header-inner">
     <div class="logo">
-      <div class="logo-icon"><i class="fas fa-robot"></i></div>
+      <div class="logo-icon"><i class="fas fa-bolt"></i></div>
       <div class="logo-text">
         <h1>اینتلی‌نیوز</h1>
-        <p>ایجنت هوشمند اخبار • هر ۱ ساعت</p>
+        <span><i class="fas fa-circle" style="font-size:6px"></i> ایجنت هوشمند • هر ۱ ساعت • ۳۰+ منبع</span>
       </div>
     </div>
     <div class="header-actions">
-      <div class="badge-live"><span class="dot"></span> زنده</div>
-      <button class="btn btn-outline btn-sm" onclick="fetchNow()"><i class="fas fa-sync"></i> جستجوی فوری</button>
-      <button class="btn btn-primary btn-sm" onclick="document.getElementById('tg-card').scrollIntoView({behavior:'smooth'})"><i class="fab fa-telegram"></i> تلگرام</button>
+      <div class="badge-live"><span class="dot"></span> زنده و فعال</div>
+      <button class="btn btn-outline btn-sm" onclick="fetchNow()" id="btn-fetch"><i class="fas fa-bolt"></i> جستجوی فوری</button>
+      <button class="btn btn-primary btn-sm" onclick="document.getElementById('tg-card').scrollIntoView({behavior:'smooth'})"><i class="fab fa-telegram"></i> اتصال تلگرام</button>
     </div>
   </div>
 </header>
@@ -250,188 +251,130 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 <div class="container">
 
   <div class="stats" id="stats">
-    <div class="stat"><b id="stotal">0</b><span>کل اخبار</span></div>
-    <div class="stat"><b id="sdom">0</b><span>داخلی</span></div>
-    <div class="stat"><b id="sint">0</b><span>خارجی</span></div>
+    <div class="stat"><div class="stat-main"><b id="stotal">0</b><span>کل اخبار ذخیره شده</span></div><div class="stat-icon gold"><i class="fas fa-newspaper"></i></div></div>
+    <div class="stat"><div class="stat-main"><b id="sdom">0</b><span>اخبار داخلی</span></div><div class="stat-icon blue"><i class="fas fa-flag"></i></div></div>
+    <div class="stat"><div class="stat-main"><b id="sint">0</b><span>اخبار خارجی</span></div><div class="stat-icon purple"><i class="fas fa-globe"></i></div></div>
+    <div class="stat"><div class="stat-main"><b id="skw">0</b><span>کلیدواژه فعال</span></div><div class="stat-icon green"><i class="fas fa-key"></i></div></div>
   </div>
 
   <div class="grid">
-    <!-- SIDEBAR -->
-    <aside style="display:flex;flex-direction:column;gap:20px">
+    <aside class="sidebar">
       
-      <!-- Keywords -->
       <div class="card">
         <div class="card-header">
-          <h3><i class="fas fa-key"></i> کلیدواژه‌ها</h3>
-          <span style="font-size:11px;color:var(--text-muted)" id="kw-count">۰ مورد</span>
+          <h3><i class="fas fa-hashtag"></i> کلیدواژه‌های فعال</h3>
+          <span style="font-size:11px;background:var(--bg2);border:1px solid var(--border);padding:4px 10px;border-radius:999px;color:var(--muted)" id="kw-count">۰ مورد</span>
         </div>
         <div class="card-body">
-          <div class="row">
-            <div class="input-group" style="margin:0;flex:1">
-              <input id="kw-input" class="input" placeholder="مثلا: هوش مصنوعی, انتخابات, تلسا..." onkeydown="if(event.key==='Enter')addKeyword()"/>
-            </div>
+          <div class="kw-form">
+            <input id="kw-input" class="input" placeholder="مثلاً: هوش مصنوعی، دلار، پرسپولیس..." onkeydown="if(event.key==='Enter')addKeyword()" />
             <button class="btn btn-primary" onclick="addKeyword()"><i class="fas fa-plus"></i></button>
           </div>
-          <div style="font-size:11px;color:var(--text-muted);margin-top:8px">
-            <i class="fas fa-lightbulb" style="color:var(--gold)"></i> کلیدواژه را وارد کنید و Enter بزنید
+          <div style="display:flex;gap:8px;margin-top:10px">
+            <label style="font-size:11px;display:flex;align-items:center;gap:5px;cursor:pointer"><input type="checkbox" id="kw-dom" checked style="accent-color:var(--gold)"> داخلی</label>
+            <label style="font-size:11px;display:flex;align-items:center;gap:5px;cursor:pointer"><input type="checkbox" id="kw-int" checked style="accent-color:var(--gold)"> خارجی</label>
           </div>
           <div class="keyword-list" id="kw-list"></div>
-          
-          <div style="margin-top:18px;padding-top:16px;border-top:1px solid var(--border)">
+
+          <div style="margin-top:20px;padding-top:18px;border-top:1px solid var(--border)">
             <div class="input-group">
               <label><i class="fas fa-clock"></i> بازه جستجوی خودکار</label>
               <select id="interval" class="input">
-                <option value="15">هر ۱۵ دقیقه</option>
-                <option value="30">هر ۳۰ دقیقه</option>
-                <option value="60" selected>هر ۱ ساعت</option>
-                <option value="120">هر ۲ ساعت</option>
-                <option value="360">هر ۶ ساعت</option>
-                <option value="720">هر ۱۲ ساعت</option>
+                <option value="15">⚡ هر ۱۵ دقیقه (تست)</option>
+                <option value="30">🕧 هر ۳۰ دقیقه</option>
+                <option value="60" selected>🕐 هر ۱ ساعت (پیشنهادی)</option>
+                <option value="120">🕑 هر ۲ ساعت</option>
+                <option value="360">🕕 هر ۶ ساعت</option>
               </select>
             </div>
             <div class="row">
-              <div class="input-group">
-                <label>حداکثر خبر در هر جستجو</label>
-                <select id="max-news" class="input">
-                  <option value="5">۵ خبر</option>
-                  <option value="10" selected>۱۵ خبر</option>
-                  <option value="20">۲۰ خبر</option>
-                  <option value="30">۳۰ خبر</option>
-                </select>
-              </div>
-              <div class="input-group">
-                <label>ارسال خودکار تلگرام</label>
-                <div style="display:flex;align-items:center;gap:10px;margin-top:8px">
-                  <div id="auto-tg-switch" class="switch active" onclick="this.classList.toggle('active')"></div>
-                  <span style="font-size:12px">فعال</span>
-                </div>
-              </div>
+              <div class="input-group"><label>تعداد خبر</label><select id="max-news" class="input"><option value="5">۵ خبر</option><option value="10">۱۰ خبر</option><option value="15" selected>۱۵ خبر</option><option value="25">۲۵ خبر</option></select></div>
+              <div class="input-group"><label>ارسال خودکار تلگرام</label><div style="display:flex;align-items:center;gap:10px;margin-top:10px"><div id="auto-tg-switch" class="switch active" onclick="this.classList.toggle('active')"></div><span style="font-size:12px;font-weight:600">فعال</span></div></div>
             </div>
-            <button class="btn btn-outline" style="width:100%;justify-content:center;margin-top:8px" onclick="saveSettings()"><i class="fas fa-save"></i> ذخیره تنظیمات</button>
+            <button class="btn btn-outline" style="width:100%;justify-content:center" onclick="saveSettings()"><i class="fas fa-save"></i> ذخیره تنظیمات زمان‌بندی</button>
           </div>
         </div>
       </div>
 
-      <!-- Telegram -->
       <div class="card" id="tg-card">
-        <div class="card-header">
-          <h3><i class="fab fa-telegram" style="color:#2AABEE"></i> کانال تلگرام</h3>
-        </div>
+        <div class="card-header"><h3><i class="fab fa-telegram" style="background:#2AABEE22;color:#2AABEE"></i> ارسال به کانال تلگرام</h3><span style="font-size:10px;color:var(--muted)">Bot API</span></div>
         <div class="card-body">
-          <div id="tg-status" class="tg-status"><i class="fas fa-info-circle"></i> تنظیم نشده - راهنما را ببینید</div>
-          
-          <div class="input-group">
-            <label><i class="fas fa-robot"></i> Bot Token (از @BotFather)</label>
-            <input id="tg-token" class="input" placeholder="1234567890:AAH..." type="password"/>
-          </div>
-          <div class="input-group">
-            <label><i class="fas fa-bullhorn"></i> Chat ID / یوزرنیم کانال</label>
-            <input id="tg-chat" class="input" placeholder="@your_channel یا -100123..." />
-            <div style="font-size:10px;color:var(--text-muted);margin-top:4px">ربات باید ادمین کانال باشد</div>
-          </div>
-          <div class="row" style="margin-bottom:12px">
-            <div class="input-group" style="margin:0">
-              <label>حالت ارسال</label>
-              <select id="tg-mode" class="input">
-                <option value="immediate">تکی - هر خبر جداگانه</option>
-                <option value="digest">خلاصه - چند خبر در یک پیام</option>
-              </select>
-            </div>
-            <div class="input-group" style="margin:0">
-              <label>وضعیت</label>
-              <div style="display:flex;align-items:center;gap:10px;margin-top:8px">
-                <div id="tg-enabled" class="switch" onclick="this.classList.toggle('active')"></div>
-                <span style="font-size:12px">فعال</span>
-              </div>
-            </div>
+          <div id="tg-status" class="tg-status"><i class="fas fa-info-circle"></i> تنظیم نشده — راهنما را بخوانید</div>
+          <div class="input-group"><label><i class="fas fa-robot"></i> Bot Token (از @BotFather بگیرید)</label><input id="tg-token" class="input" placeholder="1234567890:AAH..." type="password"/><div style="font-size:10px;color:var(--muted);margin-top:4px;display:flex;align-items:center;gap:4px"><i class="fas fa-lock" style="font-size:9px"></i> توکن به صورت امن ذخیره می‌شود و ماسک نمایش داده می‌شود</div></div>
+          <div class="input-group"><label><i class="fas fa-bullhorn"></i> Chat ID / یوزرنیم کانال</label><input id="tg-chat" class="input" placeholder="@your_channel یا -1001..." /><div style="font-size:10px;color:var(--muted);margin-top:4px">ربات باید ادمین کانال باشد • برای کانال خصوصی از -100... استفاده کنید</div></div>
+          <div class="row" style="margin-bottom:14px">
+            <div class="input-group" style="margin:0"><label>حالت ارسال</label><select id="tg-mode" class="input"><option value="immediate">📨 تکی — هر خبر جداگانه (زیبا)</option><option value="digest">📬 خلاصه — ۵ خبر در یک پیام</option></select></div>
+            <div class="input-group" style="margin:0"><label>فعال</label><div style="display:flex;align-items:center;gap:10px;margin-top:10px"><div id="tg-enabled" class="switch" onclick="this.classList.toggle('active')"></div><span style="font-size:12px;font-weight:600">ارسال خودکار</span></div></div>
           </div>
           <div class="row">
-            <button class="btn btn-outline" style="flex:1;justify-content:center" onclick="testTelegram()"><i class="fas fa-paper-plane"></i> تست</button>
-            <button class="btn btn-primary" style="flex:1;justify-content:center" onclick="saveTelegram()"><i class="fas fa-save"></i> ذخیره</button>
+            <button class="btn btn-outline" style="flex:1;justify-content:center" onclick="testTelegram()"><i class="fas fa-paper-plane"></i> تست اتصال</button>
+            <button class="btn btn-primary" style="flex:1;justify-content:center" onclick="saveTelegram()"><i class="fas fa-check"></i> ذخیره و فعال‌سازی</button>
           </div>
 
-          <div style="margin-top:16px;background:#0f0f17;border-radius:10px;padding:12px;border:1px solid var(--border)">
-            <div style="font-size:12px;font-weight:700;margin-bottom:6px"><i class="fas fa-question-circle" style="color:var(--gold)"></i> راهنمای اتصال تلگرام</div>
-            <ol style="font-size:11px;color:var(--text-muted);padding-right:16px;line-height:1.8">
-              <li>به @BotFather پیام بده و /newbot بزن</li>
-              <li>نام ربات را بساز و توکن را کپی کن</li>
-              <li>ربات را ادمین کانالت کن</li>
-              <li>آیدی کانال (با @) و توکن را اینجا وارد کن</li>
-            </ol>
-          </div>
+          <details style="margin-top:16px;background:#0e0e16;border:1px solid var(--border);border-radius:12px;padding:0;overflow:hidden"><summary style="padding:12px 14px;font-size:12px;font-weight:700;cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px"><i class="fas fa-question-circle" style="color:var(--gold)"></i> راهنمای تصویری اتصال تلگرام <i class="fas fa-chevron-down" style="margin-right:auto;font-size:10px"></i></summary><div style="padding:14px;border-top:1px solid var(--border)"><ol style="font-size:11.5px;color:var(--muted);padding-right:18px;line-height:2;font-weight:500"><li>به <b style="color:var(--text)">@BotFather</b> در تلگرام پیام بده و <code style="background:var(--bg2);padding:2px 6px;border-radius:6px">/newbot</code> بزن</li><li>نام ربات: مثلاً <b>IntelNews</b> و یوزرنیم: <b>intelnews_bot</b></li><li>توکنی که می‌دهد را کپی کن (مثل <code style="background:var(--bg2);padding:2px 6px;border-radius:6px">12345:AAF...</code>)</li><li>در کانالت، ربات را <b>ادمین</b> کن با دسترسی ارسال پیام</li><li>آیدی کانال را اینجا وارد کن: اگر عمومی است <code>@channel</code>، اگر خصوصی: با ربات <code>@userinfobot</code> آیدی -100... را بگیر</li><li>ذخیره و تست بزن — باید پیام تایید بیاید</li></ol><div style="margin-top:12px;font-size:11px;background:rgba(255,214,10,0.08);border:1px solid rgba(255,214,10,0.15);padding:10px 12px;border-radius:10px;color:var(--gold)"><i class="fas fa-lightbulb"></i> <b>نکته:</b> فرمت پیام تلگرام شامل تیتر، خلاصه، تاریخ شمسی، ساعت، لینک و ناشر است و کاملاً فارسی‌سازی شده.</div></div></details>
         </div>
       </div>
 
-      <!-- Logs -->
       <div class="card">
-        <div class="card-header">
-          <h3><i class="fas fa-terminal"></i> لاگ سیستم</h3>
-          <button class="btn-icon" onclick="loadLogs()"><i class="fas fa-sync"></i></button>
-        </div>
-        <div class="card-body" style="padding:12px">
-          <div class="log-list" id="log-list"><div class="loader"><div class="spinner"></div></div></div>
-        </div>
+        <div class="card-header"><h3><i class="fas fa-terminal"></i> لاگ زنده سیستم</h3><div style="display:flex;gap:6px"><button class="btn-icon" style="width:30px;height:30px" onclick="loadLogs()"><i class="fas fa-sync" style="font-size:11px"></i></button><button class="btn-icon" style="width:30px;height:30px" onclick="document.getElementById('log-list').innerHTML=''"><i class="fas fa-trash" style="font-size:11px"></i></button></div></div>
+        <div class="card-body" style="padding:14px"><div class="log-list" id="log-list"><div class="loader"><div class="spinner"></div><span style="font-size:12px;color:var(--muted)">در حال بارگذاری...</span></div></div></div>
       </div>
 
     </aside>
 
-    <!-- MAIN CONTENT -->
     <section>
       <div class="card">
         <div class="card-header">
-          <h3><i class="fas fa-newspaper"></i> آخرین اخبار</h3>
-          <div style="display:flex;gap:8px">
-            <button class="btn btn-ghost btn-sm" onclick="clearNews()"><i class="fas fa-trash"></i> پاک کردن</button>
-            <button class="btn btn-outline btn-sm" onclick="sendAllToTelegram()"><i class="fab fa-telegram"></i> ارسال به تلگرام</button>
+          <h3><i class="fas fa-radar"></i> پایش زنده اخبار</h3>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+            <div style="position:relative"><i class="fas fa-search" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--muted2)"></i><input id="search-news" class="input" style="width:200px;padding:8px 32px 8px 10px;font-size:12px" placeholder="جستجو در عنوان..." oninput="filterLocalNews()"/></div>
+            <button class="btn btn-ghost btn-sm" onclick="clearNews()"><i class="fas fa-trash"></i> پاکسازی</button>
+            <button class="btn btn-outline btn-sm" onclick="exportNews()"><i class="fas fa-download"></i> خروجی JSON</button>
+            <button class="btn btn-primary btn-sm" onclick="sendAllToTelegram()"><i class="fab fa-telegram"></i> ارسال ۵ خبر به تلگرام</button>
           </div>
         </div>
         <div class="card-body">
           <div class="news-toolbar">
             <div class="filters">
-              <button class="filter-btn active" data-f="all" onclick="setFilter('all')">همه</button>
+              <button class="filter-btn active" data-f="all" onclick="setFilter('all')"><i class="fas fa-layer-group"></i> همه منابع</button>
               <button class="filter-btn" data-f="domestic" onclick="setFilter('domestic')">🇮🇷 داخلی</button>
               <button class="filter-btn" data-f="international" onclick="setFilter('international')">🌍 خارجی</button>
             </div>
             <div style="display:flex;gap:8px;align-items:center">
-              <select id="kw-filter" class="input" style="width:160px;padding:6px 10px;font-size:12px" onchange="loadNews()">
-                <option value="">همه کلیدواژه‌ها</option>
-              </select>
-              <span style="font-size:11px;color:var(--text-muted)" id="news-count">۰ خبر</span>
+              <select id="kw-filter" class="input" style="width:170px;padding:7px 12px;font-size:12px" onchange="loadNews()"><option value="">همه کلیدواژه‌ها</option></select>
+              <select id="sort" class="input" style="width:130px;padding:7px 12px;font-size:12px" onchange="loadNews()"><option value="newest">جدیدترین</option><option value="oldest">قدیمی‌ترین</option></select>
+              <span style="font-size:11px;background:var(--bg2);border:1px solid var(--border);padding:6px 12px;border-radius:999px;color:var(--muted)" id="news-count">۰ خبر</span>
             </div>
           </div>
 
           <div id="news-grid" class="news-grid"></div>
-          <div id="news-loader" style="display:none" class="loader"><div class="spinner"></div></div>
+          <div id="news-loader" style="display:none" class="loader"><div class="spinner"></div><span style="font-size:12px;color:var(--muted)">در حال جستجو از ۳۰+ منبع...</span></div>
           <div id="news-empty" class="empty" style="display:none">
-            <i class="fas fa-inbox"></i>
-            <h4>هنوز خبری نیست</h4>
-            <p style="font-size:12px">کلیدواژه اضافه کنید و جستجوی فوری را بزنید<br/>اخبار هر یک ساعت به صورت خودکار بروز می‌شود</p>
-            <button class="btn btn-primary btn-sm" style="margin-top:14px" onclick="fetchNow()"><i class="fas fa-search"></i> جستجوی فوری</button>
+            <i class="fas fa-satellite-dish"></i>
+            <h4>هنوز خبری دریافت نشده</h4>
+            <p style="font-size:12px;max-width:380px;margin:0 auto;line-height:1.8">کلیدواژه خود را اضافه کنید و دکمه جستجوی فوری را بزنید.<br/>سیستم هر یک ساعت به صورت خودکار از منابع داخلی و خارجی جستجو می‌کند و به تلگرام می‌فرستد.</p>
+            <button class="btn btn-primary btn-sm" style="margin-top:16px" onclick="fetchNow()"><i class="fas fa-bolt"></i> شروع جستجوی فوری</button>
           </div>
         </div>
       </div>
 
-      <!-- Sources info -->
-      <div class="card" style="margin-top:20px">
-        <div class="card-header">
-          <h3><i class="fas fa-globe"></i> منابع پوشش داده شده</h3>
-          <span style="font-size:11px;color:var(--text-muted)">۳۰+ منبع داخلی و خارجی</span>
-        </div>
+      <div class="card" style="margin-top:18px">
+        <div class="card-header"><h3><i class="fas fa-globe"></i> منابع تحت پوشش (۳۰+ سایت)</h3><span style="font-size:11px;color:var(--muted)">Google News + RSS مستقیم</span></div>
         <div class="card-body">
-          <div style="display:flex;gap:20px;flex-wrap:wrap">
-            <div style="flex:1;min-width:200px">
-              <div style="font-size:12px;font-weight:700;margin-bottom:8px;color:var(--domestic)"><i class="fas fa-flag"></i> داخلی (۸ منبع)</div>
-              <div id="dom-sources" style="display:flex;flex-wrap:wrap;gap:6px"></div>
-            </div>
-            <div style="flex:1;min-width:200px">
-              <div style="font-size:12px;font-weight:700;margin-bottom:8px;color:var(--international)"><i class="fas fa-earth-asia"></i> خارجی (فارسی + انگلیسی)</div>
-              <div id="int-sources" style="display:flex;flex-wrap:wrap;gap:6px"></div>
-              <div style="margin-top:8px;font-size:11px;color:var(--text-muted)">+ Google News جستجوی هوشمند در کل وب</div>
-            </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+            <div><div style="font-size:12px;font-weight:800;margin-bottom:10px;color:var(--cyan);display:flex;align-items:center;gap:6px"><i class="fas fa-flag"></i> داخلی - ۸ خبرگزاری اصلی</div><div id="dom-sources" style="display:flex;flex-wrap:wrap;gap:6px"></div><div style="margin-top:10px;font-size:11px;color:var(--muted);background:rgba(34,211,238,0.06);border:1px solid rgba(34,211,238,0.12);padding:8px 10px;border-radius:8px">جستجو با Google News فارسی + فیلتر کلیدواژه در RSS مستقیم منابع</div></div>
+            <div><div style="font-size:12px;font-weight:800;margin-bottom:10px;color:var(--purple);display:flex;align-items:center;gap:6px"><i class="fas fa-earth-asia"></i> خارجی + بین‌المللی</div><div id="int-sources" style="display:flex;flex-wrap:wrap;gap:6px"></div><div style="margin-top:10px;font-size:11px;color:var(--muted);background:rgba(167,139,250,0.06);border:1px solid rgba(167,139,250,0.12);padding:8px 10px;border-radius:8px">گوگل نیوز انگلیسی، بی‌بی‌سی، دویچه‌وله، یورونیوز، رویترز، گاردین و...</div></div>
+          </div>
+          <div style="margin-top:16px;border-top:1px solid var(--border);padding-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+            <div style="font-size:11px;font-weight:700;color:var(--muted)">ویژگی‌های خروجی:</div>
+            <span style="font-size:10px;background:var(--card2);border:1px solid var(--border);padding:4px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:5px"><i class="fas fa-heading" style="color:var(--gold)"></i> تیتر</span>
+            <span style="font-size:10px;background:var(--card2);border:1px solid var(--border);padding:4px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:5px"><i class="fas fa-align-left" style="color:var(--blue)"></i> خلاصه هوشمند</span>
+            <span style="font-size:10px;background:var(--card2);border:1px solid var(--border);padding:4px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:5px"><i class="fas fa-calendar" style="color:var(--success)"></i> تاریخ شمسی + ساعت</span>
+            <span style="font-size:10px;background:var(--card2);border:1px solid var(--border);padding:4px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:5px"><i class="fas fa-link" style="color:var(--purple)"></i> لینک اصلی</span>
+            <span style="font-size:10px;background:var(--card2);border:1px solid var(--border);padding:4px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:5px"><i class="fas fa-building" style="color:var(--cyan)"></i> نام منتشرکننده</span>
           </div>
         </div>
       </div>
-
     </section>
   </div>
 </div>
@@ -443,6 +386,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 const API = location.origin + '/api';
 let currentFilter = 'all';
 let allNewsCache = [];
+let localSearch = '';
 
 function showToast(msg, type='success'){
   const t = document.getElementById('toast');
@@ -450,37 +394,12 @@ function showToast(msg, type='success'){
   icon.className = type==='success' ? 'fas fa-check-circle success' : 'fas fa-exclamation-circle error';
   document.getElementById('toast-msg').textContent = msg;
   t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), 4000);
+  setTimeout(()=>t.classList.remove('show'), 4500);
 }
-
-async function apiGet(path){
-  const r = await fetch(API + path);
-  if(!r.ok) throw new Error((await r.json()).detail || r.statusText);
-  return r.json();
-}
-async function apiPost(path, data){
-  const r = await fetch(API + path, {
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify(data)
-  });
-  if(!r.ok) {
-    let err;
-    try{err = (await r.json()).detail}catch{err=r.statusText}
-    throw new Error(err);
-  }
-  return r.json();
-}
-async function apiDel(path){
-  const r = await fetch(API + path, {method:'DELETE'});
-  if(!r.ok) throw new Error((await r.json()).detail || r.statusText);
-  return r.json();
-}
-async function apiPatch(path, data){
-  const r = await fetch(API + path, {method:'PATCH', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)});
-  if(!r.ok) throw new Error((await r.json()).detail || r.statusText);
-  return r.json();
-}
+async function apiGet(p){ const r=await fetch(API+p); if(!r.ok) throw new Error((await r.json()).detail||r.statusText); return r.json(); }
+async function apiPost(p,d){ const r=await fetch(API+p,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}); if(!r.ok){ let e; try{e=(await r.json()).detail}catch{e=r.statusText} throw new Error(e);} return r.json(); }
+async function apiDel(p){ const r=await fetch(API+p,{method:'DELETE'}); if(!r.ok) throw new Error((await r.json()).detail||r.statusText); return r.json(); }
+async function apiPatch(p,d){ const r=await fetch(API+p,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}); if(!r.ok) throw new Error((await r.json()).detail||r.statusText); return r.json(); }
 
 // Keywords
 async function loadKeywords(){
@@ -493,255 +412,198 @@ async function loadKeywords(){
     kws.forEach(k=>{
       const chip = document.createElement('div');
       chip.className = 'keyword-chip' + (k.enabled?' active':'');
-      chip.innerHTML = `
-        <span><i class="fas fa-hashtag" style="color:var(--gold)"></i> ${k.keyword}</span>
-        <small style="font-size:9px;background:#0f0f17;padding:2px 5px;border-radius:4px">${k.domestic&&k.international?'همه':k.domestic?'داخلی':'خارجی'}</small>
-        <button class="remove" onclick="removeKeyword('${k.id}')"><i class="fas fa-times"></i></button>
-      `;
-      chip.title = 'کلیک برای فعال/غیرفعال';
+      chip.innerHTML = `<span>#${k.keyword}</span><span class="type">${k.domestic&&k.international?'همه':k.domestic?'داخلی':'خارجی'}</span><button class="remove" onclick="event.stopPropagation();removeKeyword('${k.id}')"><i class="fas fa-times"></i></button>`;
       chip.onclick = (e)=>{ if(!e.target.closest('.remove')) toggleKeyword(k.id, !k.enabled) };
+      chip.title = k.enabled?'کلیک برای غیرفعال کردن':'کلیک برای فعال کردن';
       list.appendChild(chip);
-      
-      const opt = document.createElement('option');
-      opt.value = k.keyword;
-      opt.textContent = k.keyword;
-      filter.appendChild(opt);
+      const opt=document.createElement('option'); opt.value=k.keyword; opt.textContent=k.keyword; filter.appendChild(opt);
     });
-    document.getElementById('kw-count').textContent = `${kws.length} مورد`;
-    if(kws.length===0){
-      list.innerHTML = '<div style="font-size:11px;color:var(--text-muted);padding:8px">کلیدواژه‌ای وجود ندارد - یک کلیدواژه اضافه کنید</div>';
-    }
-  }catch(e){console.error(e)}
+    document.getElementById('kw-count').textContent = `${kws.length} کلیدواژه`;
+    document.getElementById('skw').textContent = kws.filter(k=>k.enabled).length;
+    if(kws.length===0){ list.innerHTML = '<div style="font-size:11px;color:var(--muted);padding:10px;background:var(--bg2);border:1px dashed var(--border);border-radius:10px;text-align:center"><i class="fas fa-lightbulb" style="color:var(--gold)"></i> مثلا: هوش مصنوعی، دلار، فوتبال اضافه کنید</div>'; }
+  }catch(e){ console.error(e) }
 }
-
 async function addKeyword(){
-  const inp = document.getElementById('kw-input');
-  const val = inp.value.trim();
-  if(!val){showToast('کلیدواژه را وارد کنید','error');return}
+  const inp=document.getElementById('kw-input');
+  const val=inp.value.trim();
+  if(!val){ showToast('کلیدواژه را وارد کنید','error'); return}
+  const dom=document.getElementById('kw-dom').checked;
+  const intl=document.getElementById('kw-int').checked;
+  if(!dom && !intl){ showToast('حداقل یکی از داخلی/خارجی را انتخاب کنید','error'); return}
   try{
-    await apiPost('/keywords', {keyword:val, enabled:true, domestic:true, international:true});
-    inp.value='';
-    showToast(`کلیدواژه "${val}" اضافه شد`);
-    loadKeywords();
-    loadStats();
-  }catch(e){showToast(e.message,'error')}
+    await apiPost('/keywords',{keyword:val,enabled:true,domestic:dom,international:intl});
+    inp.value=''; showToast(`کلیدواژه "${val}" اضافه شد`); loadKeywords(); loadStats();
+    setTimeout(()=>{ if(confirm('جستجوی فوری برای کلیدواژه جدید انجام شود؟')) fetchNow(); }, 600);
+  }catch(e){ showToast(e.message,'error') }
 }
-
-async function removeKeyword(id){
-  if(!confirm('حذف شود؟')) return;
-  try{await apiDel(`/keywords/${id}`); showToast('حذف شد'); loadKeywords(); loadStats();}catch(e){showToast(e.message,'error')}
-}
-async function toggleKeyword(id, enabled){
-  try{await apiPatch(`/keywords/${id}`, {enabled}); loadKeywords(); showToast(enabled?'فعال شد':'غیرفعال شد')}catch(e){showToast(e.message,'error')}
-}
+async function removeKeyword(id){ if(!confirm('حذف شود؟')) return; try{ await apiDel(`/keywords/${id}`); showToast('حذف شد'); loadKeywords(); loadStats(); }catch(e){ showToast(e.message,'error') } }
+async function toggleKeyword(id,enabled){ try{ await apiPatch(`/keywords/${id}`,{enabled}); loadKeywords(); showToast(enabled?'فعال شد':'غیرفعال شد')}catch(e){ showToast(e.message,'error')} }
 
 // Settings
 async function loadSettings(){
   try{
     const s = await apiGet('/settings');
     document.getElementById('interval').value = s.interval_minutes;
-    document.getElementById('max-news').value = s.max_news_per_fetch >=20 ? 20 : s.max_news_per_fetch <=5 ? 5 : 10;
-    if(s.max_news_per_fetch==='15' || s.max_news_per_fetch===15) document.getElementById('max-news').value = 10;
-    // custom mapping
-    const sel = document.getElementById('max-news');
-    let found=false;
-    for(let o of sel.options){ if(parseInt(o.value)===s.max_news_per_fetch){ sel.value=o.value; found=true; break; } }
-    if(!found){ sel.value = s.max_news_per_fetch>15?20: s.max_news_per_fetch>8?10:5 }
-    const sw = document.getElementById('auto-tg-switch');
-    if(s.auto_send_telegram) sw.classList.add('active'); else sw.classList.remove('active');
-  }catch(e){console.error(e)}
+    document.getElementById('max-news').value = s.max_news_per_fetch>=25?25:s.max_news_per_fetch>=15?15:s.max_news_per_fetch>=10?10:5;
+    const sw=document.getElementById('auto-tg-switch'); if(s.auto_send_telegram) sw.classList.add('active'); else sw.classList.remove('active');
+  }catch(e){}
 }
 async function saveSettings(){
-  const interval = parseInt(document.getElementById('interval').value);
-  const max = parseInt(document.getElementById('max-news').value);
-  const auto = document.getElementById('auto-tg-switch').classList.contains('active');
+  const interval=parseInt(document.getElementById('interval').value);
+  const max=parseInt(document.getElementById('max-news').value);
+  const auto=document.getElementById('auto-tg-switch').classList.contains('active');
   try{
-    await apiPost('/settings', {
-      interval_minutes: interval,
-      max_news_per_fetch: max,
-      max_news_per_keyword: Math.ceil(max/2),
-      auto_send_telegram: auto,
-      enable_domestic: true,
-      enable_international: true,
-      duplicate_check_hours: 24
-    });
-    showToast(`تنظیمات ذخیره شد - بازه ${interval} دقیقه`);
-  }catch(e){showToast(e.message,'error')}
+    await apiPost('/settings',{interval_minutes:interval,max_news_per_fetch:max,max_news_per_keyword:Math.ceil(max/2),auto_send_telegram:auto,enable_domestic:true,enable_international:true,duplicate_check_hours:24});
+    showToast(`تنظیمات ذخیره شد - هر ${interval} دقیقه`);
+  }catch(e){ showToast(e.message,'error') }
 }
 
 // Telegram
 async function loadTelegram(){
   try{
-    const cfg = await apiGet('/telegram');
-    document.getElementById('tg-token').value = cfg.bot_token || '';
-    document.getElementById('tg-chat').value = cfg.chat_id || '';
-    document.getElementById('tg-mode').value = cfg.send_mode || 'immediate';
-    const sw = document.getElementById('tg-enabled');
-    if(cfg.enabled) sw.classList.add('active'); else sw.classList.remove('active');
-    const status = document.getElementById('tg-status');
+    const cfg=await apiGet('/telegram');
+    document.getElementById('tg-token').value=cfg.bot_token||'';
+    document.getElementById('tg-chat').value=cfg.chat_id||'';
+    document.getElementById('tg-mode').value=cfg.send_mode||'immediate';
+    const sw=document.getElementById('tg-enabled'); if(cfg.enabled) sw.classList.add('active'); else sw.classList.remove('active');
+    const status=document.getElementById('tg-status');
     if(cfg.enabled && cfg.bot_token && cfg.chat_id){
-      status.className='tg-status ok';
-      status.innerHTML=`<i class="fas fa-check-circle"></i> متصل به ${cfg.chat_id} - حالت: ${cfg.send_mode==='digest'?'خلاصه':'تکی'}`;
+      status.className='tg-status ok'; status.innerHTML=`<i class="fas fa-check-circle"></i> متصل به <b>${cfg.chat_id}</b> — ${cfg.send_mode==='digest'?'حالت خلاصه':'حالت تکی'} — آماده ارسال`;
     }else{
-      status.className='tg-status';
-      status.innerHTML='<i class="fas fa-info-circle"></i> تنظیم نشده - توکن و آیدی کانال را وارد کنید';
+      status.className='tg-status'; status.innerHTML='<i class="fas fa-info-circle"></i> تنظیم نشده — توکن و آیدی کانال را وارد کنید';
     }
   }catch(e){}
 }
 async function saveTelegram(){
-  const token = document.getElementById('tg-token').value.trim();
-  const chat = document.getElementById('tg-chat').value.trim();
-  const mode = document.getElementById('tg-mode').value;
-  const enabled = document.getElementById('tg-enabled').classList.contains('active');
-  if(!token || !chat){showToast('توکن و آیدی کانال الزامی است','error');return}
-  try{
-    await apiPost('/telegram', {bot_token:token, chat_id:chat, enabled, send_mode:mode});
-    showToast('تنظیمات تلگرام ذخیره شد');
-    loadTelegram();
-  }catch(e){showToast(e.message,'error')}
+  const token=document.getElementById('tg-token').value.trim();
+  const chat=document.getElementById('tg-chat').value.trim();
+  const mode=document.getElementById('tg-mode').value;
+  const enabled=document.getElementById('tg-enabled').classList.contains('active');
+  if(!token||!chat){ showToast('توکن و آیدی کانال الزامی است','error'); return}
+  try{ await apiPost('/telegram',{bot_token:token,chat_id:chat,enabled,send_mode:mode}); showToast('تنظیمات تلگرام ذخیره شد ✅'); loadTelegram(); }catch(e){ showToast(e.message,'error') }
 }
 async function testTelegram(){
-  const token = document.getElementById('tg-token').value.trim();
-  const chat = document.getElementById('tg-chat').value.trim();
-  if(!token || !chat){showToast('ابتدا توکن و چت آیدی را وارد کنید','error');return}
-  showToast('در حال ارسال پیام تست...');
-  try{
-    await apiPost('/telegram/test', {bot_token:token, chat_id:chat, enabled:true, send_mode:'immediate'});
-    showToast('پیام تست با موفقیت ارسال شد! تلگرام را چک کنید');
-  }catch(e){showToast('خطا: '+e.message,'error')}
+  const token=document.getElementById('tg-token').value.trim();
+  const chat=document.getElementById('tg-chat').value.trim();
+  if(!token||!chat){ showToast('ابتدا توکن و چت آیدی را وارد کنید','error'); return}
+  showToast('در حال ارسال پیام تست به تلگرام...');
+  try{ await apiPost('/telegram/test',{bot_token:token,chat_id:chat,enabled:true,send_mode:'immediate'}); showToast('✅ پیام تست با موفقیت ارسال شد! تلگرام را چک کنید'); }
+  catch(e){ showToast('❌ خطا: '+e.message,'error'); document.getElementById('tg-status').className='tg-status err'; document.getElementById('tg-status').innerHTML=`<i class="fas fa-times-circle"></i> خطا: ${e.message}` }
 }
 
 // News
-function setFilter(f){
-  currentFilter = f;
-  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active', b.dataset.f===f));
-  loadNews();
-}
+function setFilter(f){ currentFilter=f; document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active',b.dataset.f===f)); loadNews(); }
+function filterLocalNews(){ localSearch=document.getElementById('search-news').value.toLowerCase(); renderNews(); }
+function exportNews(){ const dataStr=JSON.stringify(allNewsCache,null,2); const blob=new Blob([dataStr],{type:'application/json'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=`intellinews-${new Date().toISOString().slice(0,10)}.json`; a.click(); showToast('خروجی JSON دانلود شد'); }
 
 async function loadNews(){
-  const loader = document.getElementById('news-loader');
-  const grid = document.getElementById('news-grid');
-  const empty = document.getElementById('news-empty');
-  const countEl = document.getElementById('news-count');
-  const kwFilter = document.getElementById('kw-filter').value;
-  loader.style.display='flex';
-  grid.innerHTML='';
-  empty.style.display='none';
+  const loader=document.getElementById('news-loader');
+  const grid=document.getElementById('news-grid');
+  const empty=document.getElementById('news-empty');
+  const countEl=document.getElementById('news-count');
+  const kwFilter=document.getElementById('kw-filter').value;
+  const sort=document.getElementById('sort').value;
+  loader.style.display='flex'; grid.innerHTML=''; empty.style.display='none';
   try{
-    let url = '/news?limit=100';
+    let url='/news?limit=100';
     if(currentFilter!=='all') url+=`&source_type=${currentFilter}`;
     if(kwFilter) url+=`&keyword=${encodeURIComponent(kwFilter)}`;
-    const news = await apiGet(url);
-    allNewsCache = news;
+    let news=await apiGet(url);
+    if(sort==='oldest') news=news.reverse();
+    allNewsCache=news;
     loader.style.display='none';
     countEl.textContent = `${news.length} خبر`;
-    if(news.length===0){empty.style.display='block';return}
-    grid.innerHTML = news.map(n=>`
+    renderNews();
+  }catch(e){ loader.style.display='none'; showToast(e.message,'error'); }
+}
+function renderNews(){
+  const grid=document.getElementById('news-grid');
+  const empty=document.getElementById('news-empty');
+  let filtered=allNewsCache;
+  if(localSearch){ filtered=filtered.filter(n=> (n.title+n.summary+n.publisher).toLowerCase().includes(localSearch)); }
+  if(filtered.length===0){ grid.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display='none';
+  grid.innerHTML=filtered.map(n=>{
+    const isDom=n.source_type==='domestic';
+    const badgeClass=n.publisher.includes('گوگل')?'google':n.source_type;
+    return `
       <div class="news-card ${n.source_type}">
         <div class="news-top">
-          <span class="publisher-badge ${n.source_type}"><i class="fas fa-building"></i> ${n.publisher}</span>
-          <span class="time-badge"><i class="far fa-clock"></i> ${n.published_at_jalali||''} ${n.time_str||''}</span>
+          <span class="publisher-badge ${badgeClass}"><i class="fas fa-${isDom?'flag':'globe'}"></i> ${escapeHtml(n.publisher)}</span>
+          <span class="time-badge"><i class="far fa-clock"></i> ${n.published_at_jalali||''} • ${n.time_str||''}</span>
         </div>
         <div class="news-title">${escapeHtml(n.title)}</div>
         <div class="news-summary">${escapeHtml(n.summary)}</div>
         <div class="news-footer">
-          <span class="keyword-tag">#${escapeHtml(n.keyword)}</span>
+          <span class="keyword-tag"><i class="fas fa-hashtag"></i> ${escapeHtml(n.keyword)}</span>
           <div class="news-actions">
-            <a href="${n.link}" target="_blank" title="مشاهده"><i class="fas fa-external-link-alt"></i></a>
+            <a href="${n.link}" target="_blank" title="مشاهده اصل خبر"><i class="fas fa-external-link-alt"></i></a>
             <button title="کپی لینک" onclick="copyLink('${n.link.replace(/'/g,"\\'")}')"><i class="fas fa-link"></i></button>
-            <button title="ارسال به تلگرام" onclick="sendOne('${n.id}')"><i class="fab fa-telegram"></i></button>
+            <button title="ارسال این خبر به تلگرام" onclick="sendOne('${n.id}')"><i class="fab fa-telegram"></i></button>
           </div>
         </div>
       </div>
-    `).join('');
-  }catch(e){
-    loader.style.display='none';
-    showToast(e.message,'error');
-  }
+    `;
+  }).join('');
 }
-
-function escapeHtml(s){ return (s||'').replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])) }
-
-function copyLink(link){
-  navigator.clipboard.writeText(link).then(()=>showToast('لینک کپی شد'));
-}
+function escapeHtml(s){ return (s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])) }
+function copyLink(link){ navigator.clipboard.writeText(link).then(()=>showToast('لینک کپی شد 📋')); }
 
 async function fetchNow(){
-  showToast('جستجوی فوری آغاز شد - لطفا صبر کنید...');
+  const btn=document.getElementById('btn-fetch');
+  const orig=btn.innerHTML; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> در حال جستجو...'; btn.disabled=true;
+  showToast('جستجوی فوری از ۳۰+ منبع آغاز شد — لطفاً ۱۰ ثانیه صبر کنید');
   document.getElementById('news-loader').style.display='flex';
   try{
-    const res = await apiPost('/fetch', {});
-    showToast(`${res.found} خبر یافت شد، ${res.added} خبر جدید`);
-    setTimeout(()=>{loadNews();loadLogs();loadStats();}, 1000);
-  }catch(e){showToast(e.message,'error'); document.getElementById('news-loader').style.display='none'}
+    const res=await apiPost('/fetch',{});
+    showToast(`✅ ${res.found} خبر یافت شد، ${res.added} خبر جدید اضافه شد`);
+    setTimeout(()=>{ loadNews(); loadLogs(); loadStats(); }, 800);
+  }catch(e){ showToast(e.message,'error') }
+  finally{ btn.innerHTML=orig; btn.disabled=false; document.getElementById('news-loader').style.display='none'; }
 }
-
-async function clearNews(){
-  if(!confirm('همه اخبار پاک شوند؟')) return;
-  try{await apiDel('/news'); showToast('اخبار پاک شدند'); loadNews(); loadStats();}catch(e){showToast(e.message,'error')}
-}
-
-async function sendOne(id){
-  try{
-    await apiPost('/telegram/send', {ids:[id]});
-    showToast('به تلگرام ارسال شد');
-  }catch(e){showToast(e.message,'error')}
-}
+async function clearNews(){ if(!confirm('همه اخبار پاک شوند؟')) return; try{ await apiDel('/news'); showToast('اخبار پاک شد'); loadNews(); loadStats(); }catch(e){ showToast(e.message,'error') } }
+async function sendOne(id){ try{ await apiPost('/telegram/send',{ids:[id]}); showToast('📨 به تلگرام ارسال شد'); }catch(e){ showToast(e.message,'error') } }
 async function sendAllToTelegram(){
-  const ids = allNewsCache.slice(0,5).map(n=>n.id);
-  if(ids.length===0){showToast('خبری برای ارسال نیست','error');return}
-  try{
-    await apiPost('/telegram/send', {ids});
-    showToast(`${ids.length} خبر به تلگرام ارسال شد`);
-  }catch(e){showToast(e.message,'error')}
+  const ids=allNewsCache.slice(0,5).map(n=>n.id);
+  if(ids.length===0){ showToast('خبری برای ارسال نیست','error'); return}
+  try{ await apiPost('/telegram/send',{ids}); showToast(`📨 ${ids.length} خبر به تلگرام ارسال شد`); }catch(e){ showToast(e.message,'error') }
 }
 
 // Stats
 async function loadStats(){
   try{
-    const s = await apiGet('/stats');
-    document.getElementById('stotal').textContent = s.total_news;
-    document.getElementById('sdom').textContent = s.domestic_count;
-    document.getElementById('sint').textContent = s.international_count;
+    const s=await apiGet('/stats');
+    document.getElementById('stotal').textContent=s.total_news;
+    document.getElementById('sdom').textContent=s.domestic_count;
+    document.getElementById('sint').textContent=s.international_count;
   }catch(e){}
 }
-
-// Logs
 async function loadLogs(){
   try{
-    const logs = await apiGet('/logs?limit=30');
-    const cont = document.getElementById('log-list');
-    if(logs.length===0){cont.innerHTML='<div style="font-size:11px;color:var(--text-muted);text-align:center;padding:10px">لاگی وجود ندارد</div>';return}
-    cont.innerHTML = logs.map(l=>{
-      const t = new Date(l.time).toLocaleTimeString('fa-IR');
-      const cls = l.level==='error'?'error':l.level==='success'?'success':'info';
-      const icon = l.level==='success'?'check':l.level==='error'?'exclamation':'info';
-      return `<div class="log-item ${cls}"><i class="fas fa-${icon}-circle" style="margin-top:2px"></i><div><span style="color:var(--text-muted)">${t}</span> ${escapeHtml(l.message)}</div></div>`
+    const logs=await apiGet('/logs?limit=40');
+    const cont=document.getElementById('log-list');
+    if(logs.length===0){ cont.innerHTML='<div style="font-size:11px;color:var(--muted);text-align:center;padding:14px">لاگی وجود ندارد</div>'; return}
+    cont.innerHTML=logs.map(l=>{
+      const t=new Date(l.time).toLocaleTimeString('fa-IR');
+      const cls=l.level==='error'?'error':l.level==='success'?'success':l.level==='warning'?'warning':'info';
+      const icon=l.level==='success'?'check':l.level==='error'?'times':l.level==='warning'?'exclamation':'info';
+      return `<div class="log-item ${cls}"><i class="fas fa-${icon}-circle" style="margin-top:2px;opacity:.8"></i><div><span style="color:var(--muted);font-size:10px">${t}</span> <span style="color:var(--text)">${escapeHtml(l.message)}</span></div></div>`;
     }).join('');
   }catch(e){}
 }
-
-// Sources
 async function loadSources(){
   try{
-    const src = await apiGet('/sources');
-    document.getElementById('dom-sources').innerHTML = src.domestic.map(s=>`<span style="font-size:10px;background:#1a1a27;border:1px solid var(--border);padding:4px 8px;border-radius:6px">${s.name}</span>`).join('');
-    document.getElementById('int-sources').innerHTML = src.international.map(s=>`<span style="font-size:10px;background:#1a1a27;border:1px solid var(--border);padding:4px 8px;border-radius:6px">${s.name}</span>`).join('') + `<span style="font-size:10px;background:linear-gradient(135deg,#f5c518,#ff8a00);color:#000;padding:4px 8px;border-radius:6px;font-weight:700"><i class="fab fa-google"></i> Google News</span><span style="font-size:10px;background:#1a1a27;border:1px solid var(--border);padding:4px 8px;border-radius:6px">Reuters</span><span style="font-size:10px;background:#1a1a27;border:1px solid var(--border);padding:4px 8px;border-radius:6px">AP News</span>`;
+    const src=await apiGet('/sources');
+    document.getElementById('dom-sources').innerHTML=src.domestic.map(s=>`<span style="font-size:10.5px;background:var(--bg2);border:1px solid var(--border);padding:5px 10px;border-radius:9px;font-weight:600;display:inline-flex;align-items:center;gap:5px"><i class="fas fa-circle" style="font-size:5px;color:var(--cyan)"></i> ${s.name}</span>`).join('');
+    document.getElementById('int-sources').innerHTML=src.international.map(s=>`<span style="font-size:10.5px;background:var(--bg2);border:1px solid var(--border);padding:5px 10px;border-radius:9px;font-weight:600;display:inline-flex;align-items:center;gap:5px"><i class="fas fa-circle" style="font-size:5px;color:var(--purple)"></i> ${s.name}</span>`).join('')+`<span style="font-size:10.5px;background:linear-gradient(135deg,#FFD60A,#FFC300);color:#000;padding:5px 10px;border-radius:9px;font-weight:800"><i class="fab fa-google"></i> Google News فارسی</span><span style="font-size:10.5px;background:linear-gradient(135deg,#FFD60A,#FFC300);color:#000;padding:5px 10px;border-radius:9px;font-weight:800"><i class="fab fa-google"></i> Google News انگلیسی</span>`;
   }catch(e){}
 }
 
 // Init
-loadKeywords();
-loadNews();
-loadSettings();
-loadTelegram();
-loadLogs();
-loadStats();
-loadSources();
-setInterval(()=>{loadNews();loadLogs();loadStats()}, 60000); // update every minute
-// auto refresh logs every 30 sec
-setInterval(loadLogs, 30000);
-
+loadKeywords(); loadNews(); loadSettings(); loadTelegram(); loadLogs(); loadStats(); loadSources();
+setInterval(()=>{ loadNews(); loadLogs(); loadStats(); }, 65000);
+setInterval(loadLogs, 20000);
+document.getElementById('kw-filter').addEventListener('change',()=>loadNews());
 </script>
 </body>
 </html>
