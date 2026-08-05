@@ -85,6 +85,26 @@ const CONFIG = {
       status: "soon",
       features: ["شبکه‌های عصبی عمیق با TensorFlow", "Computer Vision با OpenCV", "پردازش زبان طبیعی (NLP)", "پروژه صنعتی واقعی", "گواهینامه پایان دوره"],
       syllabus: []
+    },
+    {
+      id: "news-agent",
+      title: "اینتلی‌نیوز - ایجنت هوشمند اخبار",
+      badge: "جدید ✨",
+      badgeColor: "#f5c518",
+      poster: "images/course-beginner.jpg",
+      description: "ایجنت AI که بر اساس کلیدواژه شما هر 1 ساعت اخبار داخلی و خارجی را استخراج و به تلگرام ارسال می‌کند - تیتر، خلاصه، تاریخ، لینک، ناشر",
+      duration: "نامحدود",
+      sessions: "API + داشبورد",
+      level: "پروژه عملی",
+      originalPrice: 0,
+      discountPrice: 0,
+      status: "open",
+      features: ["جستجوی کلیدواژه دلخواه", "30+ منبع داخلی و خارجی", "هر 1 ساعت خودکار", "ارسال به تلگرام", "داشبورد فارسی مدرن", "خروجی: تیتر، خلاصه، تاریخ، لینک، ناشر"],
+      syllabus: [
+        { session: 1, title: "معماری ایجنت", topics: ["Google News RSS", "RSS مستقیم", "Trafilatura خلاصه‌ساز", "APScheduler"] },
+        { session: 2, title: "تلگرام", topics: ["BotFather", "ارسال تکی و Digest", "فرمت HTML زیبا"] },
+        { session: 3, title: "داشبورد", topics: ["FastAPI", "مدیریت کلیدواژه", "فیلتر داخلی/خارجی"] }
+      ]
     }
   ],
   testimonials: [
