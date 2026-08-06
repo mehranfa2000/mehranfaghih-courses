@@ -1,0 +1,9 @@
+{
+  "interval_minutes": 60,
+  "max_news_per_fetch": 15,
+  "max_news_per_keyword": 5,
+  "auto_send_telegram": true,
+  "enable_domestic": true,
+  "enable_international": true,
+  "duplicate_check_hours": 24
+}

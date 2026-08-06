@@ -1,0 +1,52 @@
+[
+  {
+    "time": "2026-08-05T23:31:56.919405",
+    "message": "11 خبر واقعی از منابع داخلی و خارجی بارگذاری شد",
+    "level": "success"
+  },
+  {
+    "time": "2026-08-05T23:29:56.919405",
+    "message": "4 کلیدواژه فعال تنظیم شد",
+    "level": "info"
+  },
+  {
+    "time": "2026-08-05T23:26:56.919405",
+    "message": "زمان‌بند هر 60 دقیقه تنظیم شد - آماده جستجوی خودکار",
+    "level": "success"
+  },
+  {
+    "time": "2026-08-05T23:21:56.919405",
+    "message": "اتصال به Google News فارسی برقرار شد",
+    "level": "success"
+  },
+  {
+    "time": "2026-08-05T23:19:56.919405",
+    "message": "منابع: ایرنا، ایسنا، مهر، تسنیم، فارس، تابناک، خبرآنلاین، اقتصادآنلاین + BBC، Reuters، Guardian",
+    "level": "info"
+  },
+  {
+    "time": "2026-08-05T23:32:15.363263",
+    "message": "زمان‌بند هر 60 دقیقه تنظیم شد",
+    "level": "success"
+  },
+  {
+    "time": "2026-08-05T23:32:27.031620",
+    "message": "در حال جستجو Google News [fa]: پرسپولیس",
+    "level": "info"
+  },
+  {
+    "time": "2026-08-05T23:32:27.063016",
+    "message": "خطا در fetch_google_news (پرسپولیس): HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/search?q=%D9%BE%D8%B1%D8%B3%D - استفاده از داده نمونه",
+    "level": "warning"
+  },
+  {
+    "time": "2026-08-05T23:32:27.063843",
+    "message": "در حال جستجو Google News [en]: پرسپولیس",
+    "level": "info"
+  },
+  {
+    "time": "2026-08-05T23:32:27.095026",
+    "message": "خطا در fetch_google_news (پرسپولیس): HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/search?q=%D9%BE%D8%B1%D8%B3%D - استفاده از داده نمونه",
+    "level": "warning"
+  }
+]

@@ -1,0 +1,6 @@
+news-agent/data/*.json
+news-agent/data/*.log
+news-agent/backend/__pycache__/
+__pycache__/
+*.pyc
+.env
